@@ -20,6 +20,7 @@
     font-family: "roboto", sans-serif;
     overflow-y: auto;
     height: 100vh;
+    overflow-x: hidden;
 }
 
 .wrapper {
