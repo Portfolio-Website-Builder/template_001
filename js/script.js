@@ -5,8 +5,13 @@ const mainContainerWidth = mainContainer.clientWidth;
 let originalParent; // Variable to store the original parent of the logoWrapper
 let originalIndex; // Variable to store the original index of the logoWrapper
 
-if (mainContainerWidth <= 700) {
+if (isResponsive()) {
   navbar.style.display = "none";
+}
+
+function isResponsive() {
+  if (mainContainerWidth <= 700) return true;
+  else return false;
 }
 
 function isResponsiveActivated() {
@@ -44,9 +49,12 @@ function isResponsiveActivated() {
 }
 
 function navbarAppearanceChanger() {
-  const scrollTop = mainContainer.scrollTop;
+  const scrollTop = Math.ceil(mainContainer.scrollTop);
+  const atBottom = Math.ceil(
+    mainContainer.scrollHeight - mainContainer.clientHeight
+  );
 
-  if (scrollTop > 20 && mainContainerWidth <= 700) {
+  if (scrollTop > 20 && isResponsive()) {
     logoWrapper.style.opacity = "0";
   } else {
     logoWrapper.style.opacity = "1";
@@ -57,18 +65,14 @@ function navbarAppearanceChanger() {
   } else {
     navbar.classList.remove("navbar-on-scroll");
   }
-  console.log(
-    scrollTop,
-    mainContainer.scrollHeight,
-    mainContainer.clientHeight
-  );
-  if (
-    scrollTop > 100 &&
-    mainContainerWidth <= 700 &&
-    scrollTop < mainContainer.scrollHeight - mainContainer.clientHeight
-  ) {
+
+  if (isResponsive() && scrollTop < atBottom && scrollTop > 50) {
+    console.log(scrollTop, atBottom);
     navbar.style.display = "flex";
-  } else {
+  } else if (
+    (isResponsive() && scrollTop < 50) ||
+    (isResponsive() && scrollTop >= atBottom)
+  ) {
     navbar.style.display = "none";
   }
 }
