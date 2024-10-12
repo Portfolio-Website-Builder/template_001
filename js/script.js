@@ -67,7 +67,6 @@ function navbarAppearanceChanger() {
   }
 
   if (isResponsive() && scrollTop < atBottom && scrollTop > 50) {
-    console.log(scrollTop, atBottom);
     navbar.style.display = "flex";
   } else if (
     (isResponsive() && scrollTop < 50) ||
@@ -80,7 +79,6 @@ function navbarAppearanceChanger() {
 function makeLogoInvisible() {
   const mainContainerScrollTop = mainContainer.scrollTop;
   const mainContainerWidth = mainContainer.clientWidth;
-  console.log(mainContainerScrollTop);
   if (mainContainerScrollTop > 20 && mainContainerWidth <= 700) {
     logoWrapper.style.opacity = "0";
   }
